@@ -55,7 +55,7 @@ def main():
         username = input ("Please choose a username: ")
         settings["username"]=username
 
-        passord = getpass.getpass(prompt = "Password: ", stream=None)
+        password = getpass.getpass(prompt = "Password: ", stream=None)
         settings["password"]=password
         configfilename = (baseconfigfilename + username)
 
