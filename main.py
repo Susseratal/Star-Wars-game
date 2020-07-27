@@ -24,9 +24,9 @@ def save_config():
 
 baseconfigfilename = os.path.join(os.path.dirname(sys.argv[0]), "savedata_")
 print (Fore.WHITE)
-enter=input("Do you have a save game? Y/N: ")
+enter=input("Would you like to start a new game? Y/N: ")
 enter=enter.lower()
-if enter == "y":
+if enter == "n":
     while True:
         choosesave=input("Please enter your username: ")
         configfilename=(baseconfigfilename + choosesave)
@@ -37,23 +37,24 @@ if enter == "y":
             weapon=settings["weapon"]
             notebook.notes=settings["notes"]
             break
-        elif choosesave == "cancel":
-            delay_print("quitting...")
-            time.sleep(0.5)
-            sys.exit()
-        else:
-            delay_print("You don't yet have a save file yet")
-            sys.exit()
-elif enter == "n":
+        delay_print("You don't yet have a save file")
+            
+elif enter == "y":
     settings={}
     settings["notes"]=notebook.notes
-    username=input ("Choose a username: ")
+    print(Fore.WHITE)
+    delay_print("Your head hurts...")
+    delay_print("Slowly, you open your eyes and look around at the gloomy room around you. You're in the brig.")
+    delay_print("You look at your hands. Who... are... you?")
+    username=input (" ")
     settings["username"]=username
     configfilename = (baseconfigfilename + username)
-    print("1. Jedi Robes - high dodge, no defence")
-    print("2. Clone Armour - low dodge, high defence")
-    print("3. Leather Armour - mid dodge, mid defence")
-    armour=input("Please choose either robes, clone armour or leather armour: ")
+    delay_print("You struggle to your feet and stumble to the door. Beside it are your clothes and a weapon. What are they? ")
+    delay_print("1. Jedi Robes - high dodge, no defence")
+    delay_print("2. Clone Armour - low dodge, high defence")
+    delay_print("3. Leather Armour - mid dodge, mid defence")
+    delay_print("Please choose either robes, clone armour or leather armour: ")
+    armour=input(" ")
     if armour == "1":
         settings["armour"]="Jedi Robes"
     elif armour == "2":
@@ -62,10 +63,11 @@ elif enter == "n":
         settings["armour"]="Leather Armour"
     else:
         settings["armour"]=armour
-    print("1. Lightsaber - high damage, low range")
-    print("2. DC-15A Rifle - high range, low damage")
-    print("3. E-5 Blaster - mid range, mid damage")
-    weapon=input("Please choose either a lightsaber, rifle or blaster: ")
+    delay_print("1. Lightsaber - high damage, low range")
+    delay_print("2. DC-15A Rifle - high range, low damage")
+    delay_print("3. E-5 Blaster - mid range, mid damage")
+    delay_print("Please choose either a lightsaber, rifle or blaster: ")
+    weapon=input(" ")
     if weapon == "1":
         settings["weapon"]="Lightsaber"
     elif weapon == "2":
@@ -76,9 +78,4 @@ elif enter == "n":
         settings["weapon"]=weapon
     save_config()
 
-#print (Fore.WHITE)
-#delay_print("Your head hurts...")
-#delay_print("Slowly, you open your eyes and look around you at the gloomy environment. You're definitely in the brig. ")
-#delay_print("You look at your hands. Who are you? ")
-#username = input (" ")
-#settings["username"]=username
+    delay_print("Now that you are dressed, you look around at your surroundings more closely. In the darkness, you can see three corridors stretching away from you. ")
