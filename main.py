@@ -18,16 +18,12 @@ def delay_print(s):
     sys.stdout.write("\n")
     sys.stdout.flush()
 
+def save_config():
+    settings["notes"]=notebook.notes
+    json.dump(settings, open(configfilename, "w"))
 
 def main():
-    def read_password():
-        return getpass.getpass("Password: ", stream=None)
-
-    def save_config():
-        settings["notes"]=notebook.notes
-        json.dump(settings, open(configfilename, "w"))
-        baseconfigfilename = os.path.join(os.path.dirname(sys.argv[0]), "savedata_")
-
+    baseconfigfilename = os.path.join(os.path.dirname(sys.argv[0]), "savedata_")
     enter = input ("Do you have a save game? Y/N: ")
     enter = enter.lower()
     if enter == "y":
@@ -37,12 +33,7 @@ def main():
             if os.path.isfile(configfilename):
                 settings=json.load(open(configfilename))
                 username=settings["username"]
-                password=settings["settings"]
-                armour=settings["armour"]
-                weapon=settings["weapon"]
-                while read_password() != password:
-                    print ("incorrect: ")
-                break
+                notebook.notes=settings["notes"]
             elif choosesave == "cancel":
                 delay_print ("quitting...")
                 time.sleep(0.5)
@@ -54,22 +45,18 @@ def main():
         settings={}
         username = input ("Please choose a username: ")
         settings["username"]=username
-
-        password = getpass.getpass(prompt = "Password: ", stream=None)
-        settings["password"]=password
+        settings["notes"]=notebook.notes
         configfilename = (baseconfigfilename + username)
-
         print ("1. Jedi Robes - high dodge, no defence")
         print ("2. Clone Armour - low dodge, high defence")
         print ("3. Leather Armour - mid dodge, mid defence")
-        armour = input ("Please choose your armour: ")
-        settings["armour"]=armour
-
+        armour = input ("Please choose either robes, clone armour or leather armour: ")
+        notebook.addnote(armour)
         print ("1. Lightsaber - high damage, low range")
         print ("2. DC-15A Rifle - high range, low damage")
         print ("3. E-5 Blaster - mid range, mid damage")
-        weapon = input ("Please choose your weapon: ")
-        settings["weapon"]=weapon
+        weapon = input ("Please choose either a lightsaber, rifle or blaster: ")
+        notebook.addnote(weapon)
         save_config()
 
     while True:
