@@ -23,7 +23,7 @@ def save_config():
     json.dump(settings, open(configfilename, "w"))
 
 baseconfigfilename = os.path.join(os.path.dirname(sys.argv[0]), "savedata_")
-print (Fore.GREEN)
+print (Fore.WHITE)
 enter=input("Do you have a save game? Y/N: ")
 enter=enter.lower()
 if enter == "y":
@@ -33,6 +33,8 @@ if enter == "y":
         if os.path.isfile(configfilename):
             settings=json.load(open(configfilename))
             username=settings["username"]
+            armour=settings["armour"]
+            weapon=settings["weapon"]
             notebook.notes=settings["notes"]
             break
         elif choosesave == "cancel":
@@ -44,18 +46,39 @@ if enter == "y":
             sys.exit()
 elif enter == "n":
     settings={}
-    username=input("Please choose a username: ")
+    settings["notes"]=notebook.notes
+    username=input ("Choose a username: ")
     settings["username"]=username
     configfilename = (baseconfigfilename + username)
     print("1. Jedi Robes - high dodge, no defence")
     print("2. Clone Armour - low dodge, high defence")
     print("3. Leather Armour - mid dodge, mid defence")
     armour=input("Please choose either robes, clone armour or leather armour: ")
-    notebook.addnote(armour)
+    if armour == "1":
+        settings["armour"]="Jedi Robes"
+    elif armour == "2":
+        settings["armour"]="Clone Armour"
+    elif armour == "3":
+        settings["armour"]="Leather Armour"
+    else:
+        settings["armour"]=armour
     print("1. Lightsaber - high damage, low range")
     print("2. DC-15A Rifle - high range, low damage")
     print("3. E-5 Blaster - mid range, mid damage")
     weapon=input("Please choose either a lightsaber, rifle or blaster: ")
-    notebook.addnote(weapon)
-    settings["notes"]=notebook.notes
+    if weapon == "1":
+        settings["weapon"]="Lightsaber"
+    elif weapon == "2":
+        settings["weapon"]="DC-15A Rifle"
+    elif weapon == "3":
+        settings["weapon"]="E-5 Blaster"
+    else:
+        settings["weapon"]=weapon
     save_config()
+
+#print (Fore.WHITE)
+#delay_print("Your head hurts...")
+#delay_print("Slowly, you open your eyes and look around you at the gloomy environment. You're definitely in the brig. ")
+#delay_print("You look at your hands. Who are you? ")
+#username = input (" ")
+#settings["username"]=username
