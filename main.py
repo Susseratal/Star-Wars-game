@@ -74,9 +74,17 @@ def main():
 
     while True:
         enemy=random.randint(1,3)
-        if enemy = "1":
+        if enemy == "1":
             print ("Before you, wrapped in black robes, is a Sith Lord. ")
-        elif enemy = "2":
+        elif enemy == "2":
             print ("You find yourself facing off against a battle droid weilding a rifle")
-        elif enemy = "3":
-            print ("Before you is a sand person with a laser rifle.")
+        elif enemy == "3":
+            print ("Before you is a tusken raider with a laser rifle.")
+        health=100
+        enemyhealth=100
+        while enemyhealth >= 1:
+            if health <= 0:
+                delay_print ("You have been slain by your foe. You now lie face down in the dirt where the vultures may pick at your bones. ")
+                sys.exit()
+
+main()
