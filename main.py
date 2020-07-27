@@ -18,18 +18,18 @@ def delay_print(s):
     sys.stdout.write("\n")
     sys.stdout.flush()
 
-def read_password():
-    return getpass.getpass("Password: ", stream=None)
-
-def save_config():
-    settings["notes"]=notebook.notes
-    json.dump(settings, open(configfilename, "w"))
 
 def main():
-    baseconfigfilename = os.path.join(os.path.dirname(sys.argv[0]), "savedata_")
+    def read_password():
+        return getpass.getpass("Password: ", stream=None)
+
+    def save_config():
+        settings["notes"]=notebook.notes
+        json.dump(settings, open(configfilename, "w"))
+        baseconfigfilename = os.path.join(os.path.dirname(sys.argv[0]), "savedata_")
+
     enter = input ("Do you have a save game? Y/N: ")
     enter = enter.lower()
-
     if enter == "y":
         while True:
             choosesave = input ("Please enter your username: ")
