@@ -91,12 +91,12 @@ elif enter == "y":
 
 while True:
     control=input("What do you want to do? ").lower()
-    left=["left"]
-    right=["right"]
-    straight=["straight", "forward", "ahead"]
-    inventory=["i", "inventory", "check inventory"]
-    if (control in left):
-        delay_print("error test left")
+    left_commands=["left"]
+    right_commands=["right"]
+    straight_commands=["straight", "forward", "ahead"]
+    inventory_commands=["i", "inventory", "check inventory"]
+    if (for control in left):
+        delay_print("eriror test left")
     elif (control in right):
         delay_print("error test right")
     elif (control in straight):
