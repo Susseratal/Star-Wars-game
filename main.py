@@ -6,6 +6,7 @@ import random
 import getpass
 import os.path
 import datetime
+from battle import battle
 from colorama import Fore
 
 def delay_print(s):
@@ -87,3 +88,22 @@ elif enter == "y":
     save_config()
 
     delay_print("Now that you are ready, you look around at your surroundings more closely. In the darkness, you can see three corridors stretching away from you. ")
+
+while True:
+    control=input("What do you want to do? ").lower()
+    left=["left"]
+    right=["right"]
+    straight=["straight", "forward", "ahead"]
+    inventory=["i", "inventory", "check inventory"]
+    if (control in left):
+        delay_print("error test left")
+    elif (control in right):
+        delay_print("error test right")
+    elif (control in straight):
+        delay_print("error test straight")
+    elif (control in inventory):
+        delay_print("inventory screen")
+    elif control == "quit":
+        delay_print("Thank you for playing " + username)
+        time.sleep(0.3)
+        sys.exit()
